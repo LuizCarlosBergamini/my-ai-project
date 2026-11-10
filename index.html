@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Quiz</title>
+  <style>
+    body { font-family: sans-serif; max-width: 500px; margin: 40px auto; padding: 0 16px; }
+    button { display: block; width: 100%; margin: 8px 0; padding: 10px; font-size: 16px; cursor: pointer; }
+    .verde { color: green; }
+    .amarelo { color: darkgoldenrod; }
+    .vermelho { color: darkred; }
+  </style>
+</head>
+<body>
+  <div id="quiz"></div>
+
+  <script>
+    // Edite aqui: "correta" é a posição da resposta certa (0, 1, 2 ou 3).
+    const perguntas = [
+      {
+        texto: "Qual é a minha comida favorita?",
+        opcoes: ["Pizza", "Hambúrguer", "Sushi", "Lasanha"],
+        correta: 0
+      },
+      {
+        texto: "Qual é a minha cor favorita?",
+        opcoes: ["Azul", "Verde", "Vermelho", "Preto"],
+        correta: 0
+      },
+      {
+        texto: "Qual é o meu tipo de filme favorito?",
+        opcoes: ["Comédia", "Terror", "Romance", "Ação"],
+        correta: 0
+      },
+      {
+        texto: "Qual é o meu passeio favorito?",
+        opcoes: ["Praia", "Cinema", "Parque", "Shopping"],
+        correta: 0
+      }
+    ];
+
+    const quiz = document.getElementById("quiz");
+    let atual = 0;
+    let acertos = 0;
+
+    function mostrarPergunta() {
+      const pergunta = perguntas[atual];
+      quiz.innerHTML = "";
+
+      const progresso = document.createElement("p");
+      progresso.textContent = `Pergunta ${atual + 1} de ${perguntas.length}`;
+      quiz.appendChild(progresso);
+
+      const titulo = document.createElement("h2");
+      titulo.textContent = pergunta.texto;
+      quiz.appendChild(titulo);
+
+      pergunta.opcoes.forEach((opcao, indice) => {
+        const botao = document.createElement("button");
+        botao.textContent = opcao;
+        botao.addEventListener("click", () => responder(indice));
+        quiz.appendChild(botao);
+      });
+    }
+
+    function responder(indice) {
+      if (indice === perguntas[atual].correta) acertos++;
+      atual++;
+      if (atual < perguntas.length) {
+        mostrarPergunta();
+      } else {
+        mostrarResultado();
+      }
+    }
+
+    function mostrarResultado() {
+      const percentual = acertos / perguntas.length;
+      const mensagem = document.createElement("h2");
+
+      if (percentual === 1) {
+        mensagem.textContent = "Parabéns, você realmente me ama muuito, toma um beijao muaaac :3";
+        mensagem.className = "verde";
+      } else if (percentual >= 0.5) {
+        mensagem.textContent = "Quaaase, mas vc foi muito bem, toma um beijinho muac :p";
+        mensagem.className = "amarelo";
+      } else {
+        mensagem.textContent = "ta tudo bem eu te amo mesmo assim :l";
+        mensagem.className = "vermelho";
+      }
+
+      quiz.innerHTML = "";
+      quiz.appendChild(mensagem);
+    }
+
+    mostrarPergunta();
+  </script>
+</body>
+</html>
