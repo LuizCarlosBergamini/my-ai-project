@@ -1,5 +1,51 @@
-body { font-family: sans-serif; max-width: 500px; margin: 40px auto; padding: 0 16px; }
-button { display: block; width: 100%; margin: 8px 0; padding: 10px; font-size: 16px; cursor: pointer; }
-.verde { color: green; }
-.amarelo { color: darkgoldenrod; }
-.vermelho { color: darkred; }
+body {
+  font-family: sans-serif;
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 0 16px;
+  background: #fff;
+  color: #1f2328;
+}
+
+.em-construcao {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 24px;
+}
+
+.selo {
+  font-size: 18px;
+  font-weight: bold;
+  color: #9a6700;
+  margin: 0;
+}
+
+.em-construcao h1 {
+  font-size: 24px;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.botao {
+  display: inline-block;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  background: #1f883d;
+  border-radius: 6px;
+  text-decoration: none;
+}
+
+.botao:hover {
+  background: #1a7f37;
+}
+
+.total-posts {
+  color: #59636e;
+  margin: 0;
+}
